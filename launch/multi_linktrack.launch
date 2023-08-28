@@ -1,0 +1,26 @@
+<launch>
+    <node pkg="nlink_parser" type="linktrack" name="linktrack0" output="screen">
+        <param name="port_name" value="/dev/ttyUSB0" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="node0_topic" />
+    </node>
+
+    <node pkg="nlink_parser" type="linktrack" name="linktrack1" output="screen">
+        <param name="port_name" value="/dev/ttyUSB1" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="node1_topic" />
+    </node>
+
+    <node pkg="nlink_parser" type="linktrack" name="linktrack2" output="screen">
+        <param name="port_name" value="/dev/ttyUSB2" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="node2_topic" />
+    </node>
+
+    <node pkg="nlink_parser" type="linktrack" name="linktrack3" output="screen">
+        <param name="port_name" value="/dev/ttyUSB3" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="node3_topic" />
+    </node>
+
+</launch>

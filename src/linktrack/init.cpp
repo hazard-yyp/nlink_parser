@@ -190,12 +190,19 @@ void Init::initNodeFrame2(NProtocolExtracter *protocol_extraction) {
   auto protocol = new NLT_ProtocolNodeFrame2;
   protocol_extraction->AddProtocol(protocol);
   protocol->SetHandleDataCallback([=] {
-    if (!publishers_[protocol]) {
-      auto topic = "nlink_linktrack_nodeframe2";
-      publishers_[protocol] =
-          nh_.advertise<nlink_parser::LinktrackNodeframe2>(topic, 200);
-      TopicAdvertisedTip(topic);
-    }
+
+  ros::NodeHandle private_nh("~");  // Private node handle to access node-specific parameters
+  std::string topic;
+  if (private_nh.getParam("topic_name", topic)) {
+      if (!publishers_[protocol]) {
+          publishers_[protocol] =
+              nh_.advertise<nlink_parser::LinktrackNodeframe2>(topic, 200);
+          TopicAdvertisedTip(topic.c_str());
+      }
+  } else {
+      ROS_ERROR("Failed to get parameter 'topic_name'");
+  }
+
     const auto &data = g_nlt_nodeframe2.result;
     auto &msg_data = g_msg_nodeframe2;
     auto &msg_nodes = msg_data.nodes;
