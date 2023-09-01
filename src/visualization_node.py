@@ -12,10 +12,18 @@ def node_callback(data):
     
     # List of base station positions
     base_stations = [
+        #{'id': 1, 'position': [0, 0, 0]},
+        #{'id': 2, 'position': [-0.578, 19.693, 0]},
+        #{'id': 3, 'position': [72.419, 20.797, 0]},
+        #{'id': 4, 'position': [72.614, 0, 0]}, carpark
+        #{'id': 1, 'position': [0, 0, 0]},
+        #{'id': 2, 'position': [-0.264, 4.13, 0]},
+        #{'id': 3, 'position': [7.36, 4.229, 0]},
+        #{'id': 4, 'position': [7.301, 0, 0]}, # site0
         {'id': 1, 'position': [0, 0, 0]},
-        {'id': 2, 'position': [-0.578, 19.693, 0]},
-        {'id': 3, 'position': [72.419, 20.797, 0]},
-        {'id': 4, 'position': [72.614, 0, 0]},
+        {'id': 2, 'position': [-0.044, 5.998, 0]},
+        {'id': 3, 'position': [6.226, 6.262, 0]},
+        {'id': 4, 'position': [6.565, 0, 0]}, # site1
     ]
     
     # Loop through base stations and create markers
