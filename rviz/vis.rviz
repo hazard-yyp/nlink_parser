@@ -59,6 +59,7 @@ Visualization Manager:
       Namespaces:
         base_stations: true
         nodes: true
+        warning_nodes: true
       Queue Size: 100
       Value: true
   Enabled: true
@@ -89,25 +90,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 77.8121337890625
+      Distance: 38.33830261230469
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 34.98726272583008
-        Y: 14.568886756896973
-        Z: -17.872041702270508
+        X: 4.830642223358154
+        Y: 4.330653190612793
+        Z: -8.283920288085938
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.0010000000474974513
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: -1.5697963237762451
+      Pitch: 0.06020293012261391
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0
+      Yaw: 4.675449371337891
     Saved: ~
 Window Geometry:
   Displays:
