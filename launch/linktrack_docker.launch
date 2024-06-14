@@ -1,3 +1,26 @@
 <launch>
-    <node pkg="nlink_parser" type="linktrack_auto.py" name="linktrack_auto" output="screen" />
+    <python>
+        import serial.tools.list_ports
+        ports = list(serial.tools.list_ports.comports())
+        usb_acm_ports = [port.device for port in ports if "ttyUSB" in port.device or "ttyACM" in port.device]
+    </python>
+
+    <!-- Dynamically launch a node for each detected port -->
+    <group>
+        <arg name="port" default="unknown" />
+        <node pkg="nlink_parser" type="linktrack" name="$(eval 'linktrack_' + arg('port').replace('/dev/', ''))" output="screen">
+            <param name="port_name" value="$(arg port)" />
+            <param name="baud_rate" value="921600" />
+            <param name="topic_name" value="$(eval 'node_' + arg('port').replace('/dev/', '') + '_topic')" />
+        </node>
+    </group>
+
+    <!-- Iterate over ports -->
+    <group ns="linktrack_nodes">
+        <foreach items="$(eval usb_acm_ports)" var="p">
+            <include file="$(find your_package)/path/to/this/launch/file.launch">
+                <arg name="port" value="$(eval p)" />
+            </include>
+        </foreach>
+    </group>
 </launch>
