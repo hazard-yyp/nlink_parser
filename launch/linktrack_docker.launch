@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="nlink_parser" type="linktrack_auto.py" name="linktrack_auto" output="screen" />
+</launch>
