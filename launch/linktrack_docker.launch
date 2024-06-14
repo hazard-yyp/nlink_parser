@@ -1,26 +1,62 @@
 <launch>
-    <python>
-        import serial.tools.list_ports
-        ports = list(serial.tools.list_ports.comports())
-        usb_acm_ports = [port.device for port in ports if "ttyUSB" in port.device or "ttyACM" in port.device]
-    </python>
 
-    <!-- Dynamically launch a node for each detected port -->
-    <group>
-        <arg name="port" default="unknown" />
-        <node pkg="nlink_parser" type="linktrack" name="$(eval 'linktrack_' + arg('port').replace('/dev/', ''))" output="screen">
-            <param name="port_name" value="$(arg port)" />
-            <param name="baud_rate" value="921600" />
-            <param name="topic_name" value="$(eval 'node_' + arg('port').replace('/dev/', '') + '_topic')" />
-        </node>
-    </group>
+    <!-- Check if devices exist and set environment variables -->
+    <param name="check_ttyUSB0" command="if [ -e /dev/ttyUSB0 ]; then echo true; else echo false; fi" />
+    <param name="check_ttyUSB1" command="if [ -e /dev/ttyUSB1 ]; then echo true; else echo false; fi" />
+    <param name="check_ttyUSB2" command="if [ -e /dev/ttyUSB2 ]; then echo true; else echo false; fi" />
+    <param name="check_ttyUSB3" command="if [ -e /dev/ttyUSB3 ]; then echo true; else echo false; fi" />
+    <param name="check_ttyACM0" command="if [ -e /dev/ttyACM0 ]; then echo true; else echo false; fi" />
+    <param name="check_ttyACM1" command="if [ -e /dev/ttyACM1 ]; then echo true; else echo false; fi" />
+    <param name="check_ttyACM2" command="if [ -e /dev/ttyACM2 ]; then echo true; else echo false; fi" />
+    <param name="check_ttyACM3" command="if [ -e /dev/ttyACM3 ]; then echo true; else echo false; fi" />
 
-    <!-- Iterate over ports -->
-    <group ns="linktrack_nodes">
-        <foreach items="$(eval usb_acm_ports)" var="p">
-            <include file="$(find your_package)/path/to/this/launch/file.launch">
-                <arg name="port" value="$(eval p)" />
-            </include>
-        </foreach>
-    </group>
+    <!-- Launch node conditionally based on environment variable -->
+    <node if="$(eval check_ttyUSB0 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack0" output="screen">
+        <param name="port_name" value="/dev/ttyUSB0" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="USB0_topic" />
+    </node>
+
+    <node if="$(eval check_ttyUSB1 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack1" output="screen">
+        <param name="port_name" value="/dev/ttyUSB1" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="USB1_topic" />
+    </node>
+
+    <node if="$(eval check_ttyUSB2 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack2" output="screen">
+        <param name="port_name" value="/dev/ttyUSB2" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="USB2_topic" />
+    </node>
+
+    <node if="$(eval check_ttyUSB3 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack3" output="screen">
+        <param name="port_name" value="/dev/ttyUSB3" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="USB3_topic" />
+    </node>
+
+    <node if="$(eval check_ttyACM0 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack4" output="screen">
+        <param name="port_name" value="/dev/ttyACM0" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="ACM0_topic" />
+    </node>
+
+    <node if="$(eval check_ttyACM1 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack5" output="screen">
+        <param name="port_name" value="/dev/ttyACM1" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="ACM1_topic" />
+    </node>
+
+    <node if="$(eval check_ttyACM2 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack6" output="screen">
+        <param name="port_name" value="/dev/ttyACM2" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="ACM2_topic" />
+    </node>
+
+    <node if="$(eval check_ttyACM3 == 'true')" pkg="nlink_parser" type="linktrack" name="linktrack7" output="screen">
+        <param name="port_name" value="/dev/ttyACM3" />
+        <param name="baud_rate" value="921600" />
+        <param name="topic_name" value="ACM3_topic" />
+    </node>
+
 </launch>
