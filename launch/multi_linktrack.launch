@@ -1,50 +1,28 @@
 <launch>
-    <node pkg="nlink_parser" type="linktrack" name="linktrack0" output="screen">
-        <param name="port_name" value="/dev/ttyUSB0" />
-        <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="USB0_topic" />
-    </node>
+    <arg name="namespace" default="" />
 
-    <node pkg="nlink_parser" type="linktrack" name="linktrack1" output="screen">
-        <param name="port_name" value="/dev/ttyUSB1" />
-        <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="USB1_topic" />
-    </node>
-
-    <node pkg="nlink_parser" type="linktrack" name="linktrack2" output="screen">
-        <param name="port_name" value="/dev/ttyUSB2" />
-        <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="USB2_topic" />
-    </node>
-
-    <node pkg="nlink_parser" type="linktrack" name="linktrack3" output="screen">
-        <param name="port_name" value="/dev/ttyUSB3" />
-        <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="USB3_topic" />
-    </node>
-
-    <node pkg="nlink_parser" type="linktrack" name="linktrack4" output="screen">
+    <node pkg="nlink_parser" type="linktrack" name="linktrack4" output="screen" ns="$(arg namespace)">
         <param name="port_name" value="/dev/ttyACM0" />
         <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="ACM0_topic" />
+        <param name="topic_name" value="$(arg namespace)/ACM0_topic" />
     </node>
 
-    <node pkg="nlink_parser" type="linktrack" name="linktrack5" output="screen">
+    <node pkg="nlink_parser" type="linktrack" name="linktrack5" output="screen" ns="$(arg namespace)">
         <param name="port_name" value="/dev/ttyACM1" />
         <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="ACM1_topic" />
+        <param name="topic_name" value="$(arg namespace)/ACM1_topic" />
     </node>
 
-    <node pkg="nlink_parser" type="linktrack" name="linktrack6" output="screen">
+    <node pkg="nlink_parser" type="linktrack" name="linktrack6" output="screen" ns="$(arg namespace)">
         <param name="port_name" value="/dev/ttyACM2" />
         <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="ACM2_topic" />
+        <param name="topic_name" value="$(arg namespace)/ACM2_topic" />
     </node>
 
-    <node pkg="nlink_parser" type="linktrack" name="linktrack7" output="screen">
+    <node pkg="nlink_parser" type="linktrack" name="linktrack7" output="screen" ns="$(arg namespace)">
         <param name="port_name" value="/dev/ttyACM3" />
         <param name="baud_rate" value="921600" />
-        <param name="topic_name" value="ACM3_topic" />
+        <param name="topic_name" value="$(arg namespace)/ACM3_topic" />
     </node>
 
 </launch>
